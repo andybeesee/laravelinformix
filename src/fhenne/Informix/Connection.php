@@ -25,12 +25,9 @@ class Connection extends \Illuminate\Database\Connection
         // Build the connection string
         $dsn = $this->getDsn($config);
 
-        // You can pass options directly to the InformixDB constructor
-        $options = [];
-
         // Create the connection
         $connector = new Connector();
-        $this->connection = $connector->createConnection($dsn, $config, $options);
+        $this->connection = $connector->createConnection($dsn, $config, array_get($config, 'options', []));
         $this->setPdo($this->connection);
         $this->setQueryGrammar(new Grammar());
         $this->setPostProcessor(new Processor());
