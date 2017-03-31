@@ -43,6 +43,17 @@ class Grammar extends BaseGrammar
         return $sql;
     }
 
+	/**
+	 * Compile an insert statement into SQL.
+	 *
+	 * @param  \Illuminate\Database\Query\Builder  $query
+	 * @param  array  $values
+	 * @return string
+	 */
+	public function compileInsert(BaseBuilder $query, array $values) {
+	 dd("NO INSERT");
+	}
+
     /**
      * Compile a single union statement.
      *
@@ -79,6 +90,7 @@ class Grammar extends BaseGrammar
      */
     public function compileUpdate(BaseBuilder $query, $values)
     {
+		dd("NO UPDATE");
         $sql = parent::compileUpdate($query, $values);
 
         if (isset($query->orders))
@@ -102,6 +114,7 @@ class Grammar extends BaseGrammar
      */
     public function compileDelete(BaseBuilder $query)
     {
+		dd("NO DELETE");
         $table = $this->wrapTable($query->from);
 
         $where = is_array($query->wheres) ? $this->compileWheres($query) : '';
