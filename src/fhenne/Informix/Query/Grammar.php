@@ -20,8 +20,8 @@ class Grammar extends BaseGrammar
         'groups',
         'havings',
         'orders',
-        'limit',
         'offset',
+        'limit',
         'lock',
     );
 
@@ -140,5 +140,17 @@ class Grammar extends BaseGrammar
         if ($value === '*') return $value;
 
         return '' . str_replace('', '', $value) . '';
+    }
+
+    /**
+     * Compile the "offset" portions of the query.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  int  $offset
+     * @return string
+     */
+    protected function compileOffset(BaseBuilder $query, $offset)
+    {
+        return 'SKIP '.(int) $offset;
     }
 }
